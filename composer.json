@@ -1,7 +1,7 @@
 {
     "name": "rikta/value-path",
     "description": "Perform get-operations on a string-notated subvalue of an object or array",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "scripts": {
         "release": "conventional-changelog --commit",
         "style": "./vendor/bin/php-cs-fixer fix --diff -v",
