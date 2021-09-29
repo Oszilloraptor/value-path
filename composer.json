@@ -1,0 +1,45 @@
+{
+    "name": "rikta/value-path",
+    "description": "Perform get-operations on a string-notated subvalue of an object or array",
+    "version": "0.1.0",
+    "scripts": {
+        "release": "conventional-changelog --commit",
+        "style": "./vendor/bin/php-cs-fixer fix --diff -v",
+        "test": "./vendor/bin/phpunit tests",
+        "coverage": "export XDEBUG_MODE=coverage && ./vendor/bin/phpunit tests --coverage-html ./coverage"
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "rikta/repository": "dev-main",
+        "rikta/timed-loop": "^1.0",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.1",
+        "marcocesarato/php-conventional-changelog": "^1.12",
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dennis Richter",
+            "email": "richter@vivaldi.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rikta\\ValuePath\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rikta\\ValuePath\\Tests\\": "tests/",
+            "Rikta\\ValuePath\\Examples\\": "examples/"
+        }
+    },
+    "type": "library",
+    "config": {
+        "sort-packages": true
+    }
+}

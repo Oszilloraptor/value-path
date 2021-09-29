@@ -1,0 +1,49 @@
+composer.json:
+  - ./composer.json
+
+.github:
+  - .github/*
+  - .github/**/*
+
+.gitignore:
+  - .gitignore
+
+config (tooling):
+  - ./*.dist
+  - ./*.dist.*
+  - .github/*.yml
+
+tests (unit):
+  - tests/*
+
+tests (example):
+  - examples/*
+
+code-change; exception:
+  - src/Exception/*
+
+code-change; operation:
+  - src/Operation/*
+
+code-change; result:
+  - src/Result/*
+
+code-change; utils:
+  - src/Utils
+
+code-change; query:
+  - src/Query*.php
+
+release:
+  - ./CHANGELOG.md
+
+documentation:
+  - ./*.md
+  - ./**/*.md
+
+php:
+  - ./**/*.php
+
+shell:
+  - ./*.sh
+  - ./**/*.sh
