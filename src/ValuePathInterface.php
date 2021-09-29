@@ -15,7 +15,7 @@ namespace Rikta\ValuePath;
  * or (equivalent, just more convenient syntax for arrays):
  * .0->getData('phones').work->number->toString()
  */
-interface PathPathInterface
+interface ValuePathInterface
 {
     public function __invoke($item);
 }

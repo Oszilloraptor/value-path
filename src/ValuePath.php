@@ -20,7 +20,7 @@ use Rikta\ValuePath\Segment\PropertySegment;
  * or (equivalent, just more convenient syntax for arrays):
  * .0->getData('phones').work->number->toString()
  */
-final class ValuePath implements PathPathInterface
+final class ValuePath implements ValuePathInterface
 {
     private string $path;
 
