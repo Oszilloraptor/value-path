@@ -9,14 +9,16 @@ namespace Rikta\ValuePath\Segment;
  */
 final class MethodSegment implements PathSegmentInterface
 {
-    private array $args;
-    private $key;
-    private string $notation;
+    private readonly array $args;
+    private readonly mixed $key;
 
-    public function __construct(string $notation)
+    public function __construct(public readonly string $notation)
     {
-        $this->notation = $notation;
-        $this->key = mb_substr($notation, 2, mb_strpos($notation, '(') - 2);
+        $key = mb_substr($notation, 2, mb_strpos($notation, '(') - 2);
+        if(is_numeric($key) && intval($key) == floatval($key)) {
+            $key = intval($key);
+        }
+        $this->key = $key;
 
         $argMatches = [];
         preg_match_all('/[\'"](.+)[\'"]/mU', $notation, $argMatches);

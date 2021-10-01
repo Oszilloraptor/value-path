@@ -9,13 +9,11 @@ namespace Rikta\ValuePath\Segment;
  */
 final class PropertySegment implements PathSegmentInterface
 {
-    private string $key;
-    private string $notation;
+    private readonly string $key;
 
-    public function __construct(string $notation)
+    public function __construct(public readonly string $notation)
     {
-        $this->notation = $notation;
-        $this->key = mb_substr($notation, 2);
+        $this->key = mb_substr($this->notation, 2);
     }
 
     /** {@inheritDoc} */
