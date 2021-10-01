@@ -9,13 +9,11 @@ namespace Rikta\ValuePath\Segment;
  */
 final class ArraySegment implements PathSegmentInterface
 {
-    private $key;
-    private string $notation;
+    private readonly $key;
 
-    public function __construct(string $notation)
+    public function __construct(public readonly string $notation)
     {
-        $this->notation = $notation;
-        $this->key = trim($notation, '["\'.]');
+        $this->key = trim($this->notation, '["\'.]');
     }
 
     /** {@inheritDoc} */
@@ -25,14 +23,13 @@ final class ArraySegment implements PathSegmentInterface
     }
 
     /** {@inheritDoc} */
-    public function getNotation(): string
-    {
-        return $this->notation;
-    }
-
-    /** {@inheritDoc} */
     public function isAccessible($value): bool
     {
         return isset($value[$this->key]);
+    }
+    
+    public function getNotation(): string
+    {
+        return $this->notation;
     }
 }

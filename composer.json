@@ -9,7 +9,7 @@
         "coverage": "export XDEBUG_MODE=coverage && ./vendor/bin/phpunit tests --coverage-html ./coverage"
     },
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.1",
         "ext-json": "*",
         "rikta/repository": "dev-main",
         "rikta/timed-loop": "^1.0",

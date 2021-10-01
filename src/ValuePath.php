@@ -22,14 +22,11 @@ use Rikta\ValuePath\Segment\PropertySegment;
  */
 final class ValuePath implements ValuePathInterface
 {
-    private string $path;
-
     /** @var PathSegmentInterface[] */
     private array $segments;
 
-    public function __construct(string $path)
+    public function __construct(public readonly string $path)
     {
-        $this->path = $path;
         $this->segments = $this->parseString($this->path);
     }
 
@@ -42,7 +39,10 @@ final class ValuePath implements ValuePathInterface
     public function __invoke($item)
     {
         foreach ($this->segments as $segment) {
-            $item = $segment->isAccessible($item) ? $segment->getFromValue($item) : $this->inaccessiblePathSegment($segment, $item);
+            $item = $segment->isAccessible($item)
+                ? $segment->getFromValue($item)
+                : throw new InaccessiblePathSegmentException($segment, $item, $this->path)
+            ;
         }
 
         return $item;
@@ -59,24 +59,7 @@ final class ValuePath implements ValuePathInterface
             return new MethodSegment($segment);
         }
 
-        echo "###> {$segment} <###";
-
         return new PropertySegment($segment);
-    }
-
-    /**
-     * handle inaccessible path segments.
-     *
-     * @noinspection PhpReturnDocTypeMismatchInspection
-     * @todo: add handling that returns null or a default or sth...
-     *
-     * @param mixed $value
-     *
-     * @return mixed to prevent type-hint-errors when chaining the method
-     */
-    private function inaccessiblePathSegment(PathSegmentInterface $segment, $value)
-    {
-        throw new InaccessiblePathSegmentException($segment, $value, $this->path);
     }
 
     /** parses a string into an array of segments. */
